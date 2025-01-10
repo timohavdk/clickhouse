@@ -18,6 +18,10 @@ services:
       - clickhouse-keeper-01
       - clickhouse-keeper-02
       - clickhouse-keeper-03
+    environment:
+      - CLICKHOUSE_DB=default
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=1
   clickhouse-02:
     image: "clickhouse/clickhouse-server:${CHVER:-latest}"
     user: "101:101"
@@ -36,6 +40,10 @@ services:
       - clickhouse-keeper-01
       - clickhouse-keeper-02
       - clickhouse-keeper-03
+    environment:
+      - CLICKHOUSE_DB=default
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=1
   clickhouse-03:
     image: "clickhouse/clickhouse-server:${CHVER:-latest}"
     user: "101:101"
@@ -54,6 +62,10 @@ services:
       - clickhouse-keeper-01
       - clickhouse-keeper-02
       - clickhouse-keeper-03
+    environment:
+      - CLICKHOUSE_DB=default
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=1
   clickhouse-keeper-01:
     image: "clickhouse/clickhouse-keeper:${CHKVER:-latest-alpine}"
     user: "101:101"
@@ -63,9 +75,9 @@ services:
       cluster_2S_1R:
         ipv4_address: 192.168.7.5
     volumes:
-     - ./fs/volumes/clickhouse-keeper-01/etc/clickhouse-keeper/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml
+      - ./fs/volumes/clickhouse-keeper-01/etc/clickhouse-keeper/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml
     ports:
-        - "127.0.0.1:9181:9181"
+      - "127.0.0.1:9181:9181"
   clickhouse-keeper-02:
     image: "clickhouse/clickhouse-keeper:${CHKVER:-latest-alpine}"
     user: "101:101"
@@ -75,9 +87,9 @@ services:
       cluster_2S_1R:
         ipv4_address: 192.168.7.6
     volumes:
-     - ./fs/volumes/clickhouse-keeper-02/etc/clickhouse-keeper/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml
+      - ./fs/volumes/clickhouse-keeper-02/etc/clickhouse-keeper/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml
     ports:
-        - "127.0.0.1:9182:9181"
+      - "127.0.0.1:9182:9181"
   clickhouse-keeper-03:
     image: "clickhouse/clickhouse-keeper:${CHKVER:-latest-alpine}"
     user: "101:101"
@@ -87,9 +99,9 @@ services:
       cluster_2S_1R:
         ipv4_address: 192.168.7.7
     volumes:
-     - ./fs/volumes/clickhouse-keeper-03/etc/clickhouse-keeper/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml
+      - ./fs/volumes/clickhouse-keeper-03/etc/clickhouse-keeper/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml
     ports:
-        - "127.0.0.1:9183:9181"
+      - "127.0.0.1:9183:9181"
 networks:
   cluster_2S_1R:
     driver: bridge

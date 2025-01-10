@@ -35,6 +35,12 @@
                     <port>9000</port>
                 </replica>
             </shard>
+            <shard>
+                <replica>
+                    <host>clickhouse-03</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
         </cluster_2S_1R>
     </remote_servers>
     <zookeeper>
